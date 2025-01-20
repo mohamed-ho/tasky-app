@@ -18,7 +18,7 @@ class HttpService implements ServerService {
     try {
       final response = await http.get(Uri.parse(url), headers: header);
 
-      if (response.statusCode < 202) {
+      if (response.statusCode < 300) {
         return jsonDecode(response.body);
       } else {
         if (response.statusCode == 401) {
@@ -45,7 +45,7 @@ class HttpService implements ServerService {
     try {
       final response =
           await http.patch(Uri.parse(url), headers: header, body: data);
-      if (response.statusCode < 202) {
+      if (response.statusCode < 300) {
         return jsonDecode(response.body);
       } else {
         if (response.statusCode == 401) {
@@ -108,7 +108,7 @@ class HttpService implements ServerService {
         final response =
             await http.post(Uri.parse(url), headers: header, body: data);
 
-        if (response.statusCode < 202) {
+        if (response.statusCode < 300) {
           return jsonDecode(response.body);
         } else {
           if (response.statusCode == 401) {
@@ -138,7 +138,7 @@ class HttpService implements ServerService {
     try {
       final response = await http.put(Uri.parse(url),
           body: jsonEncode(data), headers: header);
-      if (response.statusCode < 202) {
+      if (response.statusCode < 300) {
         return jsonDecode(response.statusCode.toString());
       } else {
         if (response.statusCode == 401) {
@@ -166,7 +166,7 @@ class HttpService implements ServerService {
       {required String url, Map<String, String>? header}) async {
     try {
       final response = await http.delete(Uri.parse(url), headers: header);
-      if (response.statusCode < 202) {
+      if (response.statusCode < 300) {
         log('deleted');
         return jsonDecode(response.body);
       } else {
