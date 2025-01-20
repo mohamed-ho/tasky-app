@@ -111,7 +111,7 @@ class _SingupContentWidgetState extends State<SingupContentWidget> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "please Enter your password";
-                } else if (value.length > 6) {
+                } else if (value.length < 6) {
                   return "passowrd should be more than 5 character";
                 }
                 return null;
