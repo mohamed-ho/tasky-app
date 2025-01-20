@@ -1,12 +1,7 @@
-   
-name: Flutter CI/CD
+name: Build APK
 
 on:
   push:
-    branches:
-      - main
-     
-  pull_request:
     branches:
       - main
 
@@ -15,31 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout My Code 
+      # Checkout the code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Java 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin' # Use the Eclipse Temurin distribution
-          java-version: '17'
-
-      - name: Install Flutter Version 3.24.5
+      # Set up Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.2' # Use the required Flutter version
+          flutter-version: 'stable'
 
-      - name: Install Dependencies
+      # Install dependencies
+      - name: Install dependencies
         run: flutter pub get
 
-      # - name: Run Our Test
-      #   run: flutter test
-
+      # Build the APK
       - name: Build APK
         run: flutter build apk --release
-        
+
+      # Upload the APK as an artifact
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
