@@ -37,11 +37,3 @@ jobs:
 
       - name: Build APK
         run: flutter build apk --release
-
-      - name: Upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{secrets.APPID}} 
-          serviceCredentialsFileContent: ${{secrets.GOOGLEID}}
-          groups: Tester
-          file: build/app/outputs/flutter-apk/app-release.apk
