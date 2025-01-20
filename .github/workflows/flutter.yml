@@ -27,7 +27,7 @@ jobs:
       - name: Install Flutter Version 3.24.5
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.5' # Use the required Flutter version
+          flutter-version: '3.27.2' # Use the required Flutter version
 
       - name: Install Dependencies
         run: flutter pub get
